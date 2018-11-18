@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17EFA1E3-C128-421E-85CE-3C7BA14F2C62}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Barcodes2</RootNamespace>
+    <AssemblyName>Barcodes2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AsciiEncoder.cs" />
+    <Compile Include="BarcodeException.cs" />
+    <Compile Include="BarcodeFormats.cs" />
+    <Compile Include="BarcodeSettings.cs" />
+    <Compile Include="BarcodeSizeException.cs" />
+    <Compile Include="CoefficientsCollection.cs" />
+    <Compile Include="DataMatrix\DataMatrixWriter.cs" />
+    <Compile Include="DataMatrix\Encoder.cs" />
+    <Compile Include="DataMatrix\EncoderFormat.cs" />
+    <Compile Include="DataMatrix\LayoutRenderer.cs" />
+    <Compile Include="DataMatrix\MemoryStreamExtensions.cs" />
+    <Compile Include="Definitions\EANDefinition.cs" />
+    <Compile Include="Definitions\EAN\EAN13.cs" />
+    <Compile Include="Definitions\Postal\CPC.cs" />
+    <Compile Include="Definitions\Postal\IntelligentMail.cs" />
+    <Compile Include="Definitions\Postal\Postnet.cs" />
+    <Compile Include="Definitions\Postal\RM4SCC.cs" />
+    <Compile Include="GS1\GS1AIConstants.cs" />
+    <Compile Include="Helpers\EANHelper.cs" />
+    <Compile Include="RenderState.cs" />
+    <Compile Include="Services\DefinitionFactory.cs" />
+    <Compile Include="Definitions\Single\ExtendedCode3of9.cs" />
+    <Compile Include="Definitions\Single\Interleaved2of5.cs" />
+    <Compile Include="Helpers\Code128Helper.cs" />
+    <Compile Include="CodedValueCollection.cs" />
+    <Compile Include="Definitions\Single\Codabar.cs" />
+    <Compile Include="Definitions\Single\Code11.cs" />
+    <Compile Include="Definitions\Single\Code2of5.cs" />
+    <Compile Include="Definitions\Single\Code3of9.cs" />
+    <Compile Include="Definitions\Single\Code93.cs" />
+    <Compile Include="Definitions\DefaultDefinition.cs" />
+    <Compile Include="Definitions\IDefinition.cs" />
+    <Compile Include="Generator.cs" />
+    <Compile Include="GS1\GS1Builder.cs" />
+    <Compile Include="GS1\GS1Helper.cs" />
+    <Compile Include="GS1\GS1Value.cs" />
+    <Compile Include="Pattern.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReedSolomon.cs" />
+    <Compile Include="Services\BitmapRenderer.cs" />
+    <Compile Include="Services\DebugRenderer.cs" />
+    <Compile Include="Services\ILocatorProvider.cs" />
+    <Compile Include="Services\IRenderer.cs" />
+    <Compile Include="Services\Locator.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
