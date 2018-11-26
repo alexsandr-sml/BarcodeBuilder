@@ -6,6 +6,6 @@ namespace nht.barcodes.Common
 	{
 		public string Barcode { get; set; }
 
-		public Image Image { get; set; }
+        public Image Image { get; set; }
 	}
 }

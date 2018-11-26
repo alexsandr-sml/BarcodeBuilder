@@ -213,3 +213,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/.vs/Barcode Writer/DesignTimeBuild
+/.vs/Barcode Writer/v15/Server/sqlite3
