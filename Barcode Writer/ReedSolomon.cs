@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Barcodes.Common.Interfaces;
+using System;
 
 namespace Barcodes
 {
@@ -17,11 +18,8 @@ namespace Barcodes
 
         public ReedSolomon(IInitialiser initialiser)
         {
-            if (initialiser == null)
-                throw new ArgumentNullException("initialiser", "Polynomial initialiser cannot be null.");
-
-            _Initialiser = initialiser;
-            InitaliseLogTables();
+            _Initialiser = initialiser ?? throw new ArgumentNullException("initialiser", "Polynomial initialiser cannot be null.");
+			InitaliseLogTables();
             _Coefficients = new CoefficientsCollection();
         }
 
@@ -134,14 +132,4 @@ namespace Barcodes
             return result;
         }
     }
-
-    /// <summary>
-    /// Defines the initialiser for the Reed Solomon functions
-    /// </summary>
-    public interface IInitialiser
-    {
-        int G { get; }
-        int GetECCCount(int dataCount, int level);
-    }
-
 }

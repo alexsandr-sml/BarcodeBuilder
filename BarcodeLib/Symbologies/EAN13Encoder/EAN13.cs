@@ -724,7 +724,6 @@ namespace BarcodeLib.Symbologies
             CountryCodes.Add("997", "COUPONS");
             CountryCodes.Add("998", "COUPONS");
             CountryCodes.Add("999", "COUPONS");
-
         }
 
         private void CheckDigit()
@@ -758,9 +757,6 @@ namespace BarcodeLib.Symbologies
             }
         }
 
-        public string Encoded_Value
-        {
-            get { return Encode_EAN13(); }
-        }
+        public string Encoded_Value => Encode_EAN13();
     }
 }

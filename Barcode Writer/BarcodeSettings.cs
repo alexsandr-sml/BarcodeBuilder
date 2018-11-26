@@ -5,10 +5,10 @@
 	/// </summary>
 	public class BarcodeSettings
 	{
-        /// <summary>
-        /// Gets or sets the height in pixels of the bars
-        /// </summary>
-        public int BarHeight { get; set; }
+		/// <summary>
+		/// Gets or sets the height in pixels of the bars
+		/// </summary>
+		public int BarHeight { get; set; }
 
 		/// <summary>
 		/// Gets or sets the height of short bar in 4-state codes
@@ -85,7 +85,7 @@
 		/// </summary>
 		public System.Drawing.Size MaxSize
 		{
-			get { return new System.Drawing.Size(MaxWidth, MaxHeight); }
+			get => new System.Drawing.Size(MaxWidth, MaxHeight); 
 			set
 			{
 				MaxHeight = value.Height;
@@ -118,7 +118,7 @@
 		/// </summary>
 		public System.Drawing.Size Size
 		{
-			get { return new System.Drawing.Size(Width, Height); }
+			get => new System.Drawing.Size(Width, Height);
 			set
 			{
 				Height = value.Height;
@@ -137,52 +137,24 @@
 			return (BarcodeSettings)this.MemberwiseClone();
 		}
 
-        public BarcodeSettings()
-        {
-            BarHeight = 80;
-            ShortHeight = BarHeight / 3;
-            MediumHeight = (BarHeight / 3) * 2;
-            LeftMargin = 10;
-            RightMargin = 10;
-            TopMargin = 10;
-            BottomMargin = 10;
-            WideWidth = 6;
-            NarrowWidth = 2;
-            ModulePadding = 2;
-            IsTextShown = true;
-            TextPadding = 10;
-            IsTextPadded = true;
-            Font = new System.Drawing.Font(System.Drawing.FontFamily.GenericMonospace, 12);
-            IsChecksumCalculated = true;
-            Scale = 1.0F;
-        }
-
-        /// <summary>
-        /// Scales the barcode. The dimensions & max dimensions are not scaled.
-        /// </summary>
-        /// <param name="value">scale factor</param>
-        //public void Scale(float value)
-        //{
-        //    if (value == 1)
-        //        return;
-
-        //    BarHeight = ScaleValue(value, BarHeight);
-        //    ShortHeight = ScaleValue(value, ShortHeight);
-        //    MediumHeight = ScaleValue(value, ShortHeight);
-        //    LeftMargin = ScaleValue(value, LeftMargin);
-        //    RightMargin = ScaleValue(value, RightMargin);
-        //    TopMargin = ScaleValue(value, TopMargin);
-        //    BottomMargin = ScaleValue(value, BottomMargin);
-        //    WideWidth = ScaleValue(value, WideWidth);
-        //    NarrowWidth = ScaleValue(value, NarrowWidth);
-        //    ModulePadding = ScaleValue(value, ModulePadding);
-        //    TextPadding = ScaleValue(value, TextPadding);
-        //    Font = new System.Drawing.Font(Font.Name, Font.Size * value);
-        //}
-
-        //private int ScaleValue(float scale, int value)
-        //{
-        //    return (int)Math.Floor((float)value * scale);
-        //}
-    }
+		public BarcodeSettings()
+		{
+			BarHeight = 80;
+			ShortHeight = BarHeight / 3;
+			MediumHeight = (BarHeight / 3) * 2;
+			LeftMargin = 10;
+			RightMargin = 10;
+			TopMargin = 10;
+			BottomMargin = 10;
+			WideWidth = 6;
+			NarrowWidth = 2;
+			ModulePadding = 2;
+			IsTextShown = true;
+			TextPadding = 10;
+			IsTextPadded = true;
+			Font = new System.Drawing.Font(System.Drawing.FontFamily.GenericMonospace, 12);
+			IsChecksumCalculated = true;
+			Scale = 1.0F;
+		}
+	}
 }

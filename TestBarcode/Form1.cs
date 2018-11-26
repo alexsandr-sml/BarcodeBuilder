@@ -1,9 +1,4 @@
-﻿using Barcode.Net.Barcodes.Encoders.CODE128;
-using Barcode.Net.Barcodes.Encoders.EAN13;
-using Barcode.Net.Barcodes.Encoders.EAN5;
-using Barcode.Net.Barcodes.Encoders.EAN8;
-using Barcode.Net.Barcodes.Encoders.Interfaces;
-using BarcodeLib;
+﻿using BarcodeLib;
 using BarcodeLib.Enums;
 using System;
 using System.Collections.Generic;
@@ -27,9 +22,9 @@ namespace TestBarcode
 
         private void button1_Click(object sender, EventArgs e)
         {
-            IEncoder code = new Code128Encoder("AM5249503TY7878");
+            //IEncoder code = new Code128Encoder("AM5249503TY7878");
 
-            pictureBox1.Image = code.CreateBarcode();
+            //pictureBox1.Image = code.CreateBarcode();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿#define MEASURE
 #define MARKER
 
+using Barcodes.Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -21,29 +22,17 @@ namespace Barcodes
 		/// <summary>
 		/// Gets or sets the list of patterns to draw
 		/// </summary>
-		protected static Dictionary<int, Pattern> PatternSet
-		{
-			get;
-			set;
-		}
+		protected static Dictionary<int, Pattern> PatternSet { get; set; }
 
 		/// <summary>
 		/// Gets or sets the allowed characters expression
 		/// </summary>
-		protected System.Text.RegularExpressions.Regex AllowedCharsPattern
-		{
-			get;
-			set;
-		}
+		protected System.Text.RegularExpressions.Regex AllowedCharsPattern { get; set; }
 
 		/// <summary>
 		/// Gets the default settings for the barcode
 		/// </summary>
-		public BarcodeSettings DefaultSettings
-		{
-			get;
-			protected set;
-		}
+		public BarcodeSettings DefaultSettings { get; protected set; }
 
 		public BarcodeBase()
 			: this(new BarcodeSettings())
@@ -137,39 +126,39 @@ namespace Barcodes
 			int offset = (state.Settings.MediumHeight - state.Settings.ShortHeight);
 			int left = state.Left;
 			Rectangle rect;
-			foreach (Elements item in pattern.Elements)
+			foreach (EElements item in pattern.Elements)
 			{
 				switch (item)
 				{
-					case Elements.WideBlack:
+					case EElements.WideBlack:
 						rect = new Rectangle(left, state.Top, state.Settings.WideWidth, state.Settings.BarHeight);
 						left += state.Settings.WideWidth;
 
 						rects.Add(rect);
 						break;
-					case Elements.WideWhite:
+					case EElements.WideWhite:
 						left += state.Settings.WideWidth;
 						break;
-					case Elements.NarrowBlack:
+					case EElements.NarrowBlack:
 						rect = new Rectangle(left, state.Top, state.Settings.NarrowWidth, state.Settings.BarHeight);
 						left += state.Settings.NarrowWidth;
 
 						rects.Add(rect);
 						break;
-					case Elements.NarrowWhite:
+					case EElements.NarrowWhite:
 						left += state.Settings.NarrowWidth;
 						break;
-					case Elements.Tracker:
+					case EElements.Tracker:
 						rect = new Rectangle(left, state.Top + offset, state.Settings.NarrowWidth, state.Settings.ShortHeight);
 						left += state.Settings.NarrowWidth;
 						rects.Add(rect);
 						break;
-					case Elements.Ascender:
+					case EElements.Ascender:
 						rect = new Rectangle(left, state.Top, state.Settings.NarrowWidth, state.Settings.MediumHeight);
 						left += state.Settings.NarrowWidth;
 						rects.Add(rect);
 						break;
-					case Elements.Descender:
+					case EElements.Descender:
 						rect = new Rectangle(left, state.Top + offset, state.Settings.NarrowWidth, state.Settings.MediumHeight);
 						left += state.Settings.NarrowWidth;
 						rects.Add(rect);

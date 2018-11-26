@@ -3,7 +3,7 @@
     /// <summary>
     /// Encoding formats supported by DataMatrix
     /// </summary>
-    public enum EncoderFormat
+    public enum EEncoderFormat
     {
         Auto,
         AsciiLower,

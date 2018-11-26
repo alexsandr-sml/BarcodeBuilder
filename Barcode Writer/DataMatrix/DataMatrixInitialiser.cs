@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Barcodes.Common.Interfaces;
+using System;
 
 namespace Barcodes.Datamatrix
 {

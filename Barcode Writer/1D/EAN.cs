@@ -28,10 +28,7 @@ namespace Barcodes
 		/// <summary>
 		/// Gets the digits are groupings
 		/// </summary>
-		protected abstract int[] DigitGrouping
-		{
-			get;
-		}
+		protected abstract int[] DigitGrouping { get; }
 
 		/// <summary>
 		/// Draws the required guard bar

@@ -1,4 +1,5 @@
 ﻿//#define MEASURE
+using Barcodes.Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -152,7 +153,7 @@ namespace Barcodes
         /// <returns>pattern representing format</returns>
         private Pattern ParseCode(string value)
         {
-            List<Elements> list = new List<Elements>();
+            List<EElements> list = new List<EElements>();
 
             int i = 0;
             int tmp;
@@ -162,7 +163,7 @@ namespace Barcodes
 
                 for (int j = 0; j < tmp; j++)
                 {
-                    list.Add((Elements)(i % 2) + 2);
+                    list.Add((EElements)(i % 2) + 2);
                 }
                 i++;
             }

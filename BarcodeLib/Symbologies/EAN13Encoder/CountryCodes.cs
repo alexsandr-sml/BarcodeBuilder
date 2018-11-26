@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BarcodeLib.Symbologies.EAN13Encoder
 {
-    public static class CountryCodes
+	public static class CountryCodes
     {
         private static Dictionary<int, string> _countryCodes;
 

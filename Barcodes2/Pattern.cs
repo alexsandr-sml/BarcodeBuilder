@@ -23,12 +23,7 @@ namespace Barcodes2
 	/// </summary>
 	public class Pattern
 	{
-		private Element[] _State;
-
-		public Element[] Elements
-		{
-			get { return _State; }
-		}
+		public Element[] Elements { get; private set; }
 
 		/// <summary>
 		/// Gets or sets the count of wide bars in the module
@@ -52,9 +47,9 @@ namespace Barcodes2
 
 		public Pattern(Element[] pattern) : this()
 		{
-			_State = pattern;
+			Elements = pattern;
 
-			foreach (var item in _State)
+			foreach (var item in Elements)
 			{
 				if ((int)item > 1)
 					NarrowCount++;
@@ -81,7 +76,7 @@ namespace Barcodes2
 		/// <returns>pattern object</returns>
 		public static Pattern Parse(string pattern)
 		{
-			Pattern result = new Pattern();
+			var result = new Pattern();
 
 			if (Regex.IsMatch(pattern, "^[01]+$"))
 				result.ParseBinary(pattern);
@@ -100,7 +95,7 @@ namespace Barcodes2
 		private void ParseFull(string pattern)
 		{
 			string[] parts = pattern.Split(' ');
-			_State = new Element[parts.Length];
+			Elements = new Element[parts.Length];
 
 			for (int i = 0; i < parts.Length; i++)
 			{
@@ -136,7 +131,7 @@ namespace Barcodes2
 		/// <param name="pattern">pattern to encode</param>
 		private void ParseBinary(string value)
 		{
-			_State = new Element[value.Length];
+			Elements = new Element[value.Length];
 
 			for (int i = 0; i < value.Length; i++)
 			{
@@ -159,7 +154,7 @@ namespace Barcodes2
 		/// <param name="pattern">pattern to encode</param>
 		private void ParsePost(string pattern)
 		{
-			_State = new Element[(pattern.Length * 2)];
+			Elements = new Element[(pattern.Length * 2)];
 
 			for (int i = 0; i < pattern.Length; i++)
 			{
@@ -191,7 +186,7 @@ namespace Barcodes2
 		/// <param name="index">index to add bar at</param>
 		private void AddBar(Element bar, int index)
 		{
-			_State[index] = bar;
+			Elements[index] = bar;
 
 			switch (bar)
 			{

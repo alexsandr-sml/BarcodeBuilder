@@ -4,17 +4,9 @@ namespace Barcodes
 {
 	public class AddChecksumEventArgs : EventArgs
 	{
-		public string Text
-		{
-			get;
-			set;
-		}
+		public string Text { get; set; }
 
-		public CodedValueCollection Codes
-		{
-			get;
-			private set;
-		}
+		public CodedValueCollection Codes { get; private set; }
 
 		public AddChecksumEventArgs(string text, CodedValueCollection codes)
 		{

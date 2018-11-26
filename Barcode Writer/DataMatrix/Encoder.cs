@@ -50,7 +50,7 @@ namespace Barcodes.Datamatrix
         private string _Value;
         private int _Index;
         private MemoryStream _Stream;
-        private EncoderFormat _Format;
+        private EEncoderFormat _Format;
 
         /// <summary>
         /// Gets the current char from the value to encode
@@ -67,7 +67,7 @@ namespace Barcodes.Datamatrix
         /// <returns>encoded data as a byte array</returns>
         public byte[] Encode(string value)
         {
-            return Encode(value, EncoderFormat.Auto);
+            return Encode(value, EEncoderFormat.Auto);
         }
 
         /// <summary>
@@ -76,39 +76,39 @@ namespace Barcodes.Datamatrix
         /// <param name="value">string value to encode</param>
         /// <param name="format">encoding format to use</param>
         /// <returns>encoded data as a byte array</returns>
-        public byte[] Encode(string value, EncoderFormat format)
+        public byte[] Encode(string value, EEncoderFormat format)
         {
             _Stream = new MemoryStream();
             _Value = value;
             _Index = 0;
 
-            if (format == EncoderFormat.Auto)
-                _Format = EncoderFormat.AsciiLower;
+            if (format == EEncoderFormat.Auto)
+                _Format = EEncoderFormat.AsciiLower;
 
             while (_Index < _Value.Length)
             {
                 switch (_Format)
                 {
-                    case EncoderFormat.Auto:
-                    case EncoderFormat.AsciiLower:
-                    case EncoderFormat.AsciiExtended:
+                    case EEncoderFormat.Auto:
+                    case EEncoderFormat.AsciiLower:
+                    case EEncoderFormat.AsciiExtended:
                         AsciiEncode();
                         break;
-                    case EncoderFormat.AsciiNumber:
+                    case EEncoderFormat.AsciiNumber:
                         break;
-                    case EncoderFormat.C40:
+                    case EEncoderFormat.C40:
                         C40Encoder();
                         break;
-                    case EncoderFormat.TEXT:
+                    case EEncoderFormat.TEXT:
                         TEXTEncoder();
                         break;
-                    case EncoderFormat.X12:
+                    case EEncoderFormat.X12:
                         AnsiX12();
                         break;
-                    case EncoderFormat.EDIFACT:
+                    case EEncoderFormat.EDIFACT:
                         EdifactEncoder();
                         break;
-                    case EncoderFormat.Byte:
+                    case EEncoderFormat.Byte:
                         ByteEncoder(Encoding.ASCII.GetBytes(_Value.Substring(_Index)));
                         break;
                     default:
@@ -180,7 +180,7 @@ namespace Barcodes.Datamatrix
         private void C40Encoder()
         {
             _Stream.WriteByte((byte)SWITCHC40);
-            DoubleByteEncoder(EncoderFormat.C40);
+            DoubleByteEncoder(EEncoderFormat.C40);
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace Barcodes.Datamatrix
         private void TEXTEncoder()
         {
             _Stream.WriteByte((byte)SWITCHTEXT);
-            DoubleByteEncoder(EncoderFormat.TEXT);
+            DoubleByteEncoder(EEncoderFormat.TEXT);
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Barcodes.Datamatrix
                     ms.WriteByte((byte)(Current - 51));
                 else
                 {
-                    _Format = EncoderFormat.AsciiLower;
+                    _Format = EEncoderFormat.AsciiLower;
                     break;
                 }
 
@@ -230,7 +230,7 @@ namespace Barcodes.Datamatrix
         /// Encodes 3 bytes into 2 bytes. Used by C40 and TEXT
         /// </summary>
         /// <param name="format">format to use</param>
-        private void DoubleByteEncoder(EncoderFormat format)
+        private void DoubleByteEncoder(EEncoderFormat format)
         {
             MemoryStream buffer = new MemoryStream();
 
@@ -259,7 +259,7 @@ namespace Barcodes.Datamatrix
                 else
                 {
                     buffer.WriteByte(31);
-                    _Format = EncoderFormat.AsciiLower;
+                    _Format = EEncoderFormat.AsciiLower;
                     break;
                 }
             }
@@ -318,7 +318,7 @@ namespace Barcodes.Datamatrix
         /// <param name="value">value to encode</param>
         /// <param name="stream">stream to write to</param>
         /// <param name="format">Encoding format</param>
-        private void CharToInt(char value, System.IO.MemoryStream stream, EncoderFormat format)
+        private void CharToInt(char value, System.IO.MemoryStream stream, EEncoderFormat format)
         {
             //Extended ASCII
             if (value > 127)
@@ -368,7 +368,7 @@ namespace Barcodes.Datamatrix
                 return;
             }
 
-            if (format == EncoderFormat.C40)
+            if (format == EEncoderFormat.C40)
             {
                 //Shift 3
                 if (value >= 96 && value <= 127)
@@ -379,7 +379,7 @@ namespace Barcodes.Datamatrix
                 }
             }
 
-            if (format == EncoderFormat.TEXT)
+            if (format == EEncoderFormat.TEXT)
             {
                 //Shift 3
                 if (value == 96)
@@ -427,7 +427,7 @@ namespace Barcodes.Datamatrix
 
             if (stream.Position != stream.Length)
             {
-                _Format = EncoderFormat.AsciiLower;
+                _Format = EEncoderFormat.AsciiLower;
                 _Stream.WriteByte((byte)SWITCHASCII);
                 _Index -= (int)(stream.Length - stream.Position - 1);
             }
@@ -443,9 +443,9 @@ namespace Barcodes.Datamatrix
         /// <returns>true if a switch is needed. the target format is set as the current format</returns>
         private bool IsFormatSwitch(int value)
         {
-            if (_Format != EncoderFormat.AsciiLower && value == SWITCHASCII)
+            if (_Format != EEncoderFormat.AsciiLower && value == SWITCHASCII)
             {
-                _Format = EncoderFormat.AsciiLower;
+                _Format = EEncoderFormat.AsciiLower;
                 return true;
             }
 
@@ -454,19 +454,19 @@ namespace Barcodes.Datamatrix
                 case SWITCHASCII:
                     return true;
                 case SWITCHBYTE:
-                    _Format = EncoderFormat.Byte;
+                    _Format = EEncoderFormat.Byte;
                     return true;
                 case SWITCHC40:
-                    _Format = EncoderFormat.C40;
+                    _Format = EEncoderFormat.C40;
                     return true;
                 case SWITCHEDIFACT:
-                    _Format = EncoderFormat.EDIFACT;
+                    _Format = EEncoderFormat.EDIFACT;
                     return true;
                 case SWITCHTEXT:
-                    _Format = EncoderFormat.TEXT;
+                    _Format = EEncoderFormat.TEXT;
                     return true;
                 case SWITCHX12:
-                    _Format = EncoderFormat.X12;
+                    _Format = EEncoderFormat.X12;
                     return true;
                 default:
                     return false;

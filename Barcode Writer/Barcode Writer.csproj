@@ -77,7 +77,9 @@
     <Compile Include="1D\UPCE.cs" />
     <Compile Include="BarcodeException.cs" />
     <Compile Include="BarcodeSizeException.cs" />
-    <Compile Include="BarcodeFormats.cs" />
+    <Compile Include="Common\Enums\EBarcodeFormats.cs" />
+    <Compile Include="Common\Enums\EElements.cs" />
+    <Compile Include="Common\Interfaces\IInitialiser.cs" />
     <Compile Include="DataMatrix\Encoder.cs" />
     <Compile Include="DataMatrix\DataMatrix.cs" />
     <Compile Include="DataMatrix\DataMatrixDefinition.cs" />
@@ -89,10 +91,11 @@
     <Compile Include="BarcodeSettings.cs" />
     <Compile Include="CodedValueCollection.cs" />
     <Compile Include="CoefficientsCollection.cs" />
-    <Compile Include="DataMatrix\EncoderFormat.cs" />
+    <Compile Include="DataMatrix\EEncoderFormat.cs" />
     <Compile Include="DataMatrix\OutputSettings.cs" />
     <Compile Include="GS1\GS1Builder.cs" />
     <Compile Include="GS1\GS1Helper.cs" />
+    <Compile Include="GS1\GS1_Constants.cs" />
     <Compile Include="Pattern.cs" />
     <Compile Include="Postal\CPC.cs" />
     <Compile Include="Postal\IntelligentMail.cs" />
@@ -125,9 +128,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

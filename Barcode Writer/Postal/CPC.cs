@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Barcodes.Common.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace Barcodes
@@ -106,13 +107,13 @@ namespace Barcodes
         /// <param name="value">value to create pattern for</param>
         private void CreatePattern(int value)
         {
-            Elements[] tmp = new Elements[8];
+            EElements[] tmp = new EElements[8];
             for (int i = 0; i < 8; i++)
             {
                 if (i % 2 == 1)
-                    tmp[8-i] = ((value >> (i / 2)) % 2) == 1 ? Elements.NarrowBlack : Elements.NarrowWhite;
+                    tmp[8-i] = ((value >> (i / 2)) % 2) == 1 ? EElements.NarrowBlack : EElements.NarrowWhite;
                 else
-                    tmp[i] = Elements.WideWhite;
+                    tmp[i] = EElements.WideWhite;
             }
 
             PatternSet.Add(value, new Pattern(tmp));

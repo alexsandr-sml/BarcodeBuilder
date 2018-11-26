@@ -8,12 +8,12 @@ namespace Barcodes.Datamatrix
     {
         private Encoder _Encoder;
         private bool _IsSquare;
-        private System.Drawing.Size _Size;
+        private Size _Size;
         private byte[] _Data;
         private Bitmap _Canvas;
         private Barcodes.DataMatrix.OutputSettings _Settings;
 
-        public System.Drawing.Size Size
+        public Size Size
         {
             get { return _Size; }
             set
@@ -25,27 +25,19 @@ namespace Barcodes.Datamatrix
             }
         }
 
-        public bool IsInverted
-        {
-            get;
-            set;
-        }
+        public bool IsInverted { get; set; }
 
-        public EncoderFormat EncodingFormat
-        {
-            get;
-            set;
-        }
+        public EEncoderFormat EncodingFormat { get; set; }
 
         public bool IsSquare
         {
-            get { return _IsSquare; }
+            get => _IsSquare; 
             set { _IsSquare = value; }
         }
 
         public bool IsRectangle
         {
-            get { return !_IsSquare; }
+            get => !_IsSquare; 
             set { _IsSquare = !value; }
         }
 
@@ -54,7 +46,7 @@ namespace Barcodes.Datamatrix
             IsSquare = true;
             _Encoder = new Encoder();
             Size = System.Drawing.Size.Empty;
-            EncodingFormat = EncoderFormat.Auto;
+            EncodingFormat = EEncoderFormat.Auto;
         }
 
         public DataMatrix(System.Drawing.Size size)

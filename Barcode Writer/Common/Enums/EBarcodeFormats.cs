@@ -1,9 +1,14 @@
-﻿namespace Barcodes
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Barcodes.Common.Enums
 {
 	/// <summary>
 	/// Supported barcode formats
 	/// </summary>
-	public enum BarcodeFormats
+	public enum EBarcodeFormats
 	{
 		Code3of9,
 		Code128,

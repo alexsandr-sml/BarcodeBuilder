@@ -1,33 +1,19 @@
 ﻿namespace Barcodes
 {
-    using System;
+	using Barcodes.Common.Enums;
+	using System;
     using System.Text.RegularExpressions;
 
-    /// <summary>
-    /// Elements of a pattern
-    /// </summary>
-    public enum Elements
-	{
-		WideBlack,
-		WideWhite,
-		NarrowBlack,
-		NarrowWhite,
-		Tracker,
-		Ascender,
-		Descender
-	}
+    
 
 	/// <summary>
 	/// An individual module or pattern in a barcode
 	/// </summary>
 	public class Pattern
 	{
-		private Elements[] _State;
+		private EElements[] _State;
 
-		public Elements[] Elements
-        {
-            get { return _State; }
-		}
+		public EElements[] Elements => _State;
 
 		/// <summary>
 		/// Gets or sets the count of wide bars in the module
@@ -49,11 +35,11 @@
 		/// </summary>
 		internal int WhiteCount	{ get; set;	}
 
-		public Pattern(Elements[] pattern) : this()
+		public Pattern(EElements[] pattern) : this()
 		{
 			_State = pattern;
 
-			foreach (Elements item in _State)
+			foreach (EElements item in _State)
 			{
 				if ((int)item > 1)
 					NarrowCount++;
@@ -99,25 +85,25 @@
 		private void ParseFull(string pattern)
 		{
 			string[] parts = pattern.Split(' ');
-			_State = new Elements[parts.Length];
+			_State = new EElements[parts.Length];
 			
 			for (int i = 0; i < parts.Length; i++)
 			{
 				switch (parts[i])
 				{
 					case "ww":
-						AddBar(Barcodes.Elements.WideWhite, i);
+						AddBar(EElements.WideWhite, i);
 						break;
 					case "wb":
-						AddBar(Barcodes.Elements.WideBlack, i);
+						AddBar(EElements.WideBlack, i);
 						break;
 					case "0":
 					case "nw":
-						AddBar(Barcodes.Elements.NarrowWhite, i);
+						AddBar(EElements.NarrowWhite, i);
 						break;
 					case "1":
 					case "nb":
-						AddBar(Barcodes.Elements.NarrowBlack, i);
+						AddBar(EElements.NarrowBlack, i);
 						break;
 					default:
 						throw new ApplicationException("Unknown pattern element.");
@@ -132,17 +118,17 @@
 		/// <param name="pattern">pattern to encode</param>
 		private void ParseBinary(string value)
 		{
-			_State = new Elements[value.Length];
+			_State = new EElements[value.Length];
 
 			for (int i = 0; i < value.Length; i++)
 			{
 				switch (value[i])
 				{
 					case '0':
-						AddBar(Barcodes.Elements.NarrowWhite, i);
+						AddBar(EElements.NarrowWhite, i);
 						break;
 					case '1':
-						AddBar(Barcodes.Elements.NarrowBlack, i);
+						AddBar(EElements.NarrowBlack, i);
 						break;
 				}
 			}
@@ -155,27 +141,27 @@
 		/// <param name="pattern">pattern to encode</param>
 		private void ParsePost(string pattern)
 		{
-			_State = new Elements[(pattern.Length * 2)];
+			_State = new EElements[(pattern.Length * 2)];
 
 			for (int i = 0; i < pattern.Length; i++)
 			{
 				switch (pattern[i])
 				{
 					case 't':
-						AddBar(Barcodes.Elements.Tracker, i * 2);
+						AddBar(EElements.Tracker, i * 2);
 						break;
 					case 'a':
-						AddBar(Barcodes.Elements.Ascender, i * 2);
+						AddBar(EElements.Ascender, i * 2);
 						break;
 					case 'd':
-						AddBar(Barcodes.Elements.Descender, i * 2);
+						AddBar(EElements.Descender, i * 2);
 						break;
 					case 'f':
-						AddBar(Barcodes.Elements.NarrowBlack, i * 2);
+						AddBar(EElements.NarrowBlack, i * 2);
 						break;
 				}
 
-				AddBar(Barcodes.Elements.WideWhite, (i * 2) + 1);
+				AddBar(EElements.WideWhite, (i * 2) + 1);
 
 			}
 		}
@@ -185,28 +171,28 @@
 		/// </summary>
 		/// <param name="bar">bar to add</param>
 		/// <param name="index">index to add bar at</param>
-		private void AddBar(Elements bar, int index)
+		private void AddBar(EElements bar, int index)
 		{
 			_State[index] = bar;
 
 			switch (bar)
 			{
-				case Barcodes.Elements.WideBlack:
+				case EElements.WideBlack:
 					WideCount++;
 					BlackCount++;
 					break;
-				case Barcodes.Elements.WideWhite:
+				case EElements.WideWhite:
 					WideCount++;
 					WhiteCount++;
 					break;
-				case Barcodes.Elements.NarrowWhite:
+				case EElements.NarrowWhite:
 					NarrowCount++;
 					WhiteCount++;
 					break;
-				case Barcodes.Elements.Tracker:
-				case Barcodes.Elements.Ascender:
-				case Barcodes.Elements.Descender:
-				case Barcodes.Elements.NarrowBlack:
+				case EElements.Tracker:
+				case EElements.Ascender:
+				case EElements.Descender:
+				case EElements.NarrowBlack:
 					NarrowCount++;
 					BlackCount++;
 					break;

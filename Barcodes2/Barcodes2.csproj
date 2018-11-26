@@ -49,6 +49,7 @@
     <Compile Include="DataMatrix\MemoryStreamExtensions.cs" />
     <Compile Include="Definitions\EANDefinition.cs" />
     <Compile Include="Definitions\EAN\EAN13.cs" />
+    <Compile Include="Definitions\EAN\EAN8.cs" />
     <Compile Include="Definitions\Postal\CPC.cs" />
     <Compile Include="Definitions\Postal\IntelligentMail.cs" />
     <Compile Include="Definitions\Postal\Postnet.cs" />
