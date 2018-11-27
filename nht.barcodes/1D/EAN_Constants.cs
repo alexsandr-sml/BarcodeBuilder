@@ -72,7 +72,14 @@ namespace nht.barcodes._1D
 			{9, "LGGLGL" }
 		};
 
+        /// <summary>
+        /// Left and right Guard Pattern
+        /// </summary>
 		public const string LRGP = "101";
+
+        /// <summary>
+        ///  Center Guard Pattern
+        /// </summary>
 		public const string CGP = "01010";
 	}
 }
