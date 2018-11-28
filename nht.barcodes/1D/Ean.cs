@@ -19,11 +19,12 @@ namespace nht.barcodes._1D
             ///добавляем признак начала
             _sb.Append(EAN_Constants.LRGP);
 
-            for (var i = 0; i < data.Length / 2; i++)
+			var remainder = data.Length % 2;
+			for (var i = 0; i < data.Length / 2 + remainder; i++)
             {
                 _sb.Append(patternCode[i] == 'L' ? EAN_Constants.LCode[Convert.ToInt32(data.Substring(i + 1, 1))] :
                                                    EAN_Constants.GCode[Convert.ToInt32(data.Substring(i + 1, 1))]);
-            }
+			}
 
             ///adding separator
             _sb.Append(EAN_Constants.CGP);
@@ -31,7 +32,7 @@ namespace nht.barcodes._1D
             for (var i = data.Length / 2 + 1; i < data.Length; i++)
             {
                 _sb.Append(EAN_Constants.RCode[Convert.ToInt32(data.Substring(i, 1))]);
-            }
+			}
 
             ////adding checksum
             _sb.Append(EAN_Constants.RCode[cs]);
@@ -45,19 +46,20 @@ namespace nht.barcodes._1D
         public int GetChecksum(string data)
         {
             var allDigits = data.Select(x => int.Parse(x.ToString(CultureInfo.InvariantCulture)))
+				                .Reverse()
                                 .ToArray();
 
             int odd = 0;
             int even = 0;
             for (int i = 0; i < allDigits.Length; i++)
             {
-                if (i % 2 != 0)
+                if (i % 2 == 0)
                     odd += allDigits[i];
                 else
-                    even += allDigits[i] * 3;
+                    even += allDigits[i];
             }
 
-            int cs = 10 - ((even + odd) % 10);
+            int cs = 10 - ((even + odd * 3) % 10);
             if (cs == 10)
                 cs = 0;
 

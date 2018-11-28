@@ -25,42 +25,13 @@ namespace nht.barcodes.test
         [TestCase("460123456789", 3)]
         [TestCase("978111814330", 8)]
         [TestCase("1234567", 0)]
-        public void EanGetChecksum(string data, int checksum)
+		[TestCase("9031101", 7)]
+		public void EanGetChecksum(string data, int checksum)
         {
             var ean = new Ean();
             var actual = ean.GetChecksum(data);
 
-            //var f = CheckDigit(data);
-
             Assert.IsTrue(actual == checksum);
-        }
-
-        private int CheckDigit(string data)
-        {
-            //calculate the checksum digit
-            int even = 0;
-            int odd = 0;
-
-            //odd
-            for (int i = 0; i <= 6; i += 2)
-            {
-                odd += int.Parse(data.Substring(i, 1)) * 3;
-            }//for
-
-            //even
-            for (int i = 1; i <= 5; i += 2)
-            {
-                even += int.Parse(data.Substring(i, 1));
-            }//for
-
-            int total = even + odd;
-            int checksum = total % 10;
-            checksum = 10 - checksum;
-            if (checksum == 10)
-                checksum = 0;
-
-            //add the checksum to the end of the 
-            return checksum;
         }
     }
 }

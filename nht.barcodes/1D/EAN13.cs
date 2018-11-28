@@ -17,8 +17,6 @@ namespace nht.barcodes._1D
 
         }
 
-        private char[] code = new char[13];
-
         public BarcodeResult Encode(BarcodeInfo info)
         {
             //check length of input

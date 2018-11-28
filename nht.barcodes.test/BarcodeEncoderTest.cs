@@ -15,21 +15,39 @@ namespace nht.barcodes.test
         }
 
         [Test]
-        public void Encode()
+        public void EncodeEan13()
         {
             var info = new BarcodeInfo()
             {
                 Data = "460123456789",
                 Angle = 0,
-                Height = 250,
-                Width = 700,
+                Height = 150,
+                Width = 200,
                 IsAddSign = true,
                 TypeBarcode = EBarcodeFormats.EAN13
             };
 
             var actual = BarcodeEncoder.Encode(info);
 
-            actual.Image.Save("test.bmp");
+            actual.Image.Save("test-ean13.bmp");
         }
-    }
+
+		[Test]
+		public void EncodeEan8()
+		{
+			var info = new BarcodeInfo()
+			{
+				Data = "4601234",
+				Angle = 0,
+				Height = 150,
+				Width = 200,
+				IsAddSign = false,
+				TypeBarcode = EBarcodeFormats.EAN8
+			};
+
+			var actual = BarcodeEncoder.Encode(info);
+
+			actual.Image.Save("test-ean8.bmp");
+		}
+	}
 }

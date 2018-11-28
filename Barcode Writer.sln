@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZintNet", "ZintNet\ZintNet.csproj", "{0AEC3B89-AAC5-4DE3-861F-4DFD9364C5AA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZintNetLibDemo", "ZintNetLibDemo\ZintNetLibDemo.csproj", "{5208B5E2-06FA-44AE-A73C-8226D3DFE7E4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBarcode", "TestBarcode\TestBarcode.csproj", "{6902755C-60C6-42E3-B1ED-03CAF7BECE20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeLib", "BarcodeLib\BarcodeLib.csproj", "{F8646414-0C9C-49BB-9DA3-3923BF78A398}"
@@ -15,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barcodes2", "Barcodes2\Barc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barcode Writer", "Barcode Writer\Barcode Writer.csproj", "{7130D5A2-8818-4300-9D1A-80C929059A2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nht.barcodes", "nht.barcodes\nht.barcodes.csproj", "{C3C0D052-1F5B-4D7C-816D-07E8E7B3E3B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nht.barcodes", "nht.barcodes\nht.barcodes.csproj", "{C3C0D052-1F5B-4D7C-816D-07E8E7B3E3B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nht.barcodes.test", "nht.barcodes.test\nht.barcodes.test.csproj", "{0963A0A6-A005-4373-88B2-49385D025DCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nht.barcodes.test", "nht.barcodes.test\nht.barcodes.test.csproj", "{0963A0A6-A005-4373-88B2-49385D025DCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,22 +23,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0AEC3B89-AAC5-4DE3-861F-4DFD9364C5AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0AEC3B89-AAC5-4DE3-861F-4DFD9364C5AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0AEC3B89-AAC5-4DE3-861F-4DFD9364C5AA}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0AEC3B89-AAC5-4DE3-861F-4DFD9364C5AA}.Debug|x86.Build.0 = Debug|Any CPU
-		{0AEC3B89-AAC5-4DE3-861F-4DFD9364C5AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0AEC3B89-AAC5-4DE3-861F-4DFD9364C5AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0AEC3B89-AAC5-4DE3-861F-4DFD9364C5AA}.Release|x86.ActiveCfg = Release|Any CPU
-		{0AEC3B89-AAC5-4DE3-861F-4DFD9364C5AA}.Release|x86.Build.0 = Release|Any CPU
-		{5208B5E2-06FA-44AE-A73C-8226D3DFE7E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5208B5E2-06FA-44AE-A73C-8226D3DFE7E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5208B5E2-06FA-44AE-A73C-8226D3DFE7E4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5208B5E2-06FA-44AE-A73C-8226D3DFE7E4}.Debug|x86.Build.0 = Debug|Any CPU
-		{5208B5E2-06FA-44AE-A73C-8226D3DFE7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5208B5E2-06FA-44AE-A73C-8226D3DFE7E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5208B5E2-06FA-44AE-A73C-8226D3DFE7E4}.Release|x86.ActiveCfg = Release|Any CPU
-		{5208B5E2-06FA-44AE-A73C-8226D3DFE7E4}.Release|x86.Build.0 = Release|Any CPU
 		{6902755C-60C6-42E3-B1ED-03CAF7BECE20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6902755C-60C6-42E3-B1ED-03CAF7BECE20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6902755C-60C6-42E3-B1ED-03CAF7BECE20}.Debug|x86.ActiveCfg = Debug|Any CPU
