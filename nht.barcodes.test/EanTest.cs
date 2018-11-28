@@ -1,4 +1,4 @@
-using nht.barcodes._1D;
+﻿using nht.barcodes._1D;
 using NUnit.Framework;
 
 namespace nht.barcodes.test
@@ -10,16 +10,15 @@ namespace nht.barcodes.test
         {
         }
 
-        [TestCase("460123456789", 3, "LGLLGG")]
-        public void EanBuldMask(string data, int checkSumm, string pattern)
+        [TestCase("4601234567893", "LGLLGG", "101010111101001110011001001001101000010011101010101011100100111010100001000100100100011101001000010101")]
+        [TestCase("77777775", "LLLLLL", "1010111011011101101110110111011010101000100100010010001001001110101")]
+        public void EanBuldMask(string barcode, string pattern, string expected)
         {
-            var expected_bit_mask = "10101011110100111001100100100110100001001110101010100111010100001000100100100011101001000010101";
-
             var ean = new Ean();
-            var actual = ean.BuldBitMask(data, checkSumm, pattern);
+            var actual = ean.BuldBitMask(barcode, pattern);
 
             Assert.IsNotNull(actual);
-            Assert.AreEqual(expected_bit_mask, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase("460123456789", 3)]

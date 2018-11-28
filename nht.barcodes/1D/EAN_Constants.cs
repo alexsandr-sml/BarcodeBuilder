@@ -21,10 +21,10 @@ namespace nht.barcodes._1D
 			{9, "0001011" }
 		};
 
-		/// <summary>
-		/// 
-		/// </summary>
-		public static Dictionary<int, string> RCode { get; private set; } = new Dictionary<int, string>()
+        /// <summary>
+        /// 
+        /// </summary>
+        public static Dictionary<int, string> RCode { get; private set; } = new Dictionary<int, string>()
 		{
 			{0, "1110010" },
 			{1, "1100110" },

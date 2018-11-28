@@ -10,7 +10,20 @@ namespace BarcodeLib.Symbologies
     /// </summary>
     class EAN8 : BarcodeCommon, IBarcode
     {
-        private string[] EAN_CodeA = { "0001101", "0011001", "0010011", "0111101", "0100011", "0110001", "0101111", "0111011", "0110111", "0001011" };
+        private string[] EAN_CodeA = 
+        {
+            "0001101",
+            "0011001",
+            "0010011",
+            "0111101",
+            "0100011",
+            "0110001",
+            "0101111",
+            "0111011",
+            "0110111",
+            "0001011"
+
+        };
         private string[] EAN_CodeC = { "1110010", "1100110", "1101100", "1000010", "1011100", "1001110", "1010000", "1000100", "1001000", "1110100" };
 
         public EAN8(string input)
@@ -38,7 +51,7 @@ namespace BarcodeLib.Symbologies
             //first half (Encoded using left hand / odd parity)
             for (int i = 0; i < Raw_Data.Length / 2; i++)
             {
-                result += EAN_CodeA[Int32.Parse(Raw_Data[i].ToString())];
+                result += EAN_CodeA[int.Parse(Raw_Data[i].ToString())];
             }//for
 
             //center guard bars
@@ -47,7 +60,7 @@ namespace BarcodeLib.Symbologies
             //second half (Encoded using right hand / even parity)
             for (int i = Raw_Data.Length / 2; i < Raw_Data.Length; i++)
             {
-                result += EAN_CodeC[Int32.Parse(Raw_Data[i].ToString())];
+                result += EAN_CodeC[int.Parse(Raw_Data[i].ToString())];
             }//for
 
             result += "101";
@@ -91,7 +104,7 @@ namespace BarcodeLib.Symbologies
 
         public string Encoded_Value
         {
-            get { return Encode_EAN8(); }
+            get => Encode_EAN8();
         }
 
         #endregion

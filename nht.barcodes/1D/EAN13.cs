@@ -20,23 +20,23 @@ namespace nht.barcodes._1D
         public BarcodeResult Encode(BarcodeInfo info)
         {
             //check length of input
-            if (info.Data.Length < 12 || info.Data.Length > 13)
+            if (info.Data.Length != 12)
                 throw new Exception("EEAN13-1: Data length invalid. (Length must be 12 or 13)");
 
             ///Вычисляем контрольную сумму
             var cs = GetChecksum(info.Data);
 
-            var barcodeWithCheckSumm = $"{info.Data}{cs}";
+            var barcodeWithChecksum = $"{info.Data}{cs}";
 
             ///Первая цифра кодируется выбором способа кодирования 
-            var patternCode = EAN_Constants.Pattern[Convert.ToInt32(info.Data.Substring(0, 1))];
+            var patternCode = EAN_Constants.Pattern[Convert.ToInt32(barcodeWithChecksum.Substring(0, 1))];
 
-            var _bitMask = BuldBitMask(info.Data, cs, patternCode);          
+            var _bitMask = BuldBitMask(barcodeWithChecksum.Substring(1), patternCode);          
 
             return new BarcodeResult()
             {
-                Image = BarcodeDraw(_bitMask, barcodeWithCheckSumm, info),
-                Barcode = barcodeWithCheckSumm
+                Image = BarcodeDraw(_bitMask, barcodeWithChecksum, info),
+                Barcode = barcodeWithChecksum
             };
         }
 

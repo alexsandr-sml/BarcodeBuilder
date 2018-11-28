@@ -16,7 +16,7 @@ namespace nht.barcodes._1D
 		public BarcodeResult Encode(BarcodeInfo info)
 		{
 			//check length of input
-			if (info.Data.Length < 7 || info.Data.Length > 9)
+			if (info.Data.Length != 8)
 				throw new Exception("EAN-8: Data length invalid. (Length must be 7 or 9)");
 
 			///Вычисляем контрольную сумму
@@ -27,7 +27,7 @@ namespace nht.barcodes._1D
 			///Первая цифра кодируется выбором способа кодирования 
 			var patternCode = EAN_Constants.Pattern[0];
 
-			var _bitMask = BuldBitMask(info.Data, cs, patternCode);
+			var _bitMask = BuldBitMask(barcodeWithCheckSumm, patternCode);
 
 			return new BarcodeResult()
 			{
@@ -49,15 +49,12 @@ namespace nht.barcodes._1D
 					if (!info.IsAddSign)
 					{
 						var dx = (double)info.Width / barcodeBin.Length;
-						var pointer = 0;
-						for (var position = 0.0; position < info.Width; position += dx)
+						for (var i = 0; i < barcodeBin.Length; i++)
 						{
-							if (pointer < barcodeBin.Length && barcodeBin[pointer] == '1')
+							if (barcodeBin[i] == '1')
 							{
-								graph.FillRectangle(Brushes.Black, (float)position, 0, (float)dx, info.Height);
+								graph.FillRectangle(Brushes.Black, (float)(i * dx), 0, (float)dx, info.Height);
 							}
-
-							pointer++;
 						}
 					}
 					else
@@ -65,16 +62,12 @@ namespace nht.barcodes._1D
 						using (var font = new Font("Times", 14f))
 						{
 							var dx = (double)info.Width / barcodeBin.Length;
-
-							var pointer = 0;
-							for (var position = 0.0; position < info.Width; position += dx)
+							for (var i = 0; i < barcodeBin.Length; i++)
 							{
-								if (pointer < barcodeBin.Length && barcodeBin[pointer] == '1')
+								if (barcodeBin[i] == '1')
 								{
-									graph.FillRectangle(Brushes.Black, (float)position, 5, (float)dx, info.Height - 15);
+									graph.FillRectangle(Brushes.Black, (float)(i * dx), 5, (float)dx, info.Height - 15);
 								}
-
-								pointer++;
 							}
 
 							graph.FillRectangle(Brushes.White, (float)(dx * 3), info.Height - 20, (float)(dx * 28), 15);

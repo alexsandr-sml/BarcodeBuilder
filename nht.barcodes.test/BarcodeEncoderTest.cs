@@ -19,11 +19,11 @@ namespace nht.barcodes.test
         {
             var info = new BarcodeInfo()
             {
-                Data = "460123456789",
+                Data = "777777777777",
                 Angle = 0,
                 Height = 150,
                 Width = 200,
-                IsAddSign = true,
+                IsAddSign = false,
                 TypeBarcode = EBarcodeFormats.EAN13
             };
 
@@ -37,9 +37,9 @@ namespace nht.barcodes.test
 		{
 			var info = new BarcodeInfo()
 			{
-				Data = "4601234",
+				Data = "7777777",
 				Angle = 0,
-				Height = 150,
+				Height = 100,
 				Width = 200,
 				IsAddSign = false,
 				TypeBarcode = EBarcodeFormats.EAN8
