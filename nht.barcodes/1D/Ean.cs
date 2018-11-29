@@ -10,12 +10,14 @@ namespace nht.barcodes._1D
 {
     public class Ean
     {
-        public string BuldBitMask(string barcode, string patternCode)
+        public virtual string BuldBitMask(string barcode, string patternCode)
         {
             if (string.IsNullOrEmpty(barcode) || string.IsNullOrEmpty(patternCode))
             {
                 throw new Exception($"{nameof(BuldBitMask)}. One or more required parameters is null");
             }
+
+            var barcodeInt = barcode.Select(x => (int)Char.GetNumericValue(x));
 
             var _sb = new StringBuilder();
             ///добавляем признак начала
@@ -41,7 +43,7 @@ namespace nht.barcodes._1D
             return _sb.ToString();
         }
 
-        public int GetChecksum(string data)
+        public virtual int GetChecksum(string data)
         {
             var allDigits = data.Select(x => int.Parse(x.ToString(CultureInfo.InvariantCulture)))
                                 .Reverse()
@@ -58,13 +60,11 @@ namespace nht.barcodes._1D
             }
 
             int cs = 10 - ((even + odd * 3) % 10);
-            if (cs == 10)
-                cs = 0;
 
-            return cs % 10;
+            return cs == 10 ? 0 : cs % 10;
         }
 
-        public Image BarcodeDraw(string barcodeBin, string barcodeText, BarcodeInfo info)
+        public virtual Image BarcodeDraw(string barcodeBin, string barcodeText, BarcodeInfo info)
         {
             var image = new Bitmap(info.Width, info.Height);
 
