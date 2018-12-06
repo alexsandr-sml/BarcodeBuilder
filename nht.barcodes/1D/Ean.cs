@@ -1,6 +1,5 @@
 ﻿using nht.barcodes.Common;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -17,28 +16,28 @@ namespace nht.barcodes._1D
                 throw new Exception($"{nameof(BuldBitMask)}. One or more required parameters is null");
             }
 
-            var barcodeInt = barcode.Select(x => (int)Char.GetNumericValue(x));
+            var barcodeInt = barcode.Select(x => (int)char.GetNumericValue(x)).ToArray();
 
             var _sb = new StringBuilder();
             ///добавляем признак начала
-            _sb.Append(EAN_Constants.LRGP);
+            _sb.Append(EanConstants.LRGP);
 
             for (var i = 0; i < barcode.Length / 2; i++)
             {
-                _sb.Append(patternCode[i] == 'L' ? EAN_Constants.LCode[Convert.ToInt32(barcode.Substring(i + 1, 1))] :
-                                                   EAN_Constants.GCode[Convert.ToInt32(barcode.Substring(i + 1, 1))]);
+                _sb.Append(patternCode[i] == 'L' ? EanConstants.LCode[barcodeInt[i]] :
+                                                   EanConstants.GCode[barcodeInt[i]]);
             }
 
             ///adding separator
-            _sb.Append(EAN_Constants.CGP);
+            _sb.Append(EanConstants.CGP);
 
             for (var i = barcode.Length / 2; i < barcode.Length; i++)
             {
-                _sb.Append(EAN_Constants.RCode[Convert.ToInt32(barcode.Substring(i, 1))]);
+                _sb.Append(EanConstants.RCode[Convert.ToInt32(barcode.Substring(i, 1))]);
             }
 
             ///добавляем признак конца
-            _sb.Append(EAN_Constants.LRGP);
+            _sb.Append(EanConstants.LRGP);
 
             return _sb.ToString();
         }

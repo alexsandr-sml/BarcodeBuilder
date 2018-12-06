@@ -21,9 +21,12 @@ namespace nht.barcodes
                 case EBarcodeFormats.EAN13:
                     var ean13 = new Ean13();
                     return ean13.Encode(info);
-				case EBarcodeFormats.EAN8:
-					var ean8 = new Ean8();
-					return ean8.Encode(info);
+                case EBarcodeFormats.EAN8:
+                    var ean8 = new Ean8();
+                    return ean8.Encode(info);
+                case EBarcodeFormats.EAN5:
+                    var ean5 = new Ean5();
+                    return ean5.Encode(info);
                 default:
                     throw new Exception("Not implemented");
                     

@@ -29,7 +29,7 @@ namespace nht.barcodes._1D
             var barcodeWithChecksum = $"{info.Data}{cs}";
 
             ///Первая цифра кодируется выбором способа кодирования 
-            var patternCode = EAN_Constants.Pattern[Convert.ToInt32(barcodeWithChecksum.Substring(0, 1))];
+            var patternCode = EanConstants.Pattern[Convert.ToInt32(barcodeWithChecksum.Substring(0, 1))];
 
             var _bitMask = BuldBitMask(barcodeWithChecksum.Substring(1), patternCode);          
 

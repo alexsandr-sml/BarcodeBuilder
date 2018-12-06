@@ -2,7 +2,7 @@
 
 namespace nht.barcodes._1D
 {
-	public class EAN_Constants
+	public class EanConstants
 	{
 		/// <summary>
 		/// 

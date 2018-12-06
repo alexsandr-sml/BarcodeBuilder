@@ -25,7 +25,7 @@ namespace nht.barcodes._1D
             var barcodeWithCheckSumm = $"{info.Data}{cs}";
 
             ///Первая цифра кодируется выбором способа кодирования 
-            var patternCode = EAN_Constants.Pattern[0];
+            var patternCode = EanConstants.Pattern[0];
 
             var _bitMask = BuldBitMask(barcodeWithCheckSumm, patternCode);
 
