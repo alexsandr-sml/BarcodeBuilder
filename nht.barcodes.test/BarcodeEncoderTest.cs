@@ -55,7 +55,7 @@ namespace nht.barcodes.test
         {
             var info = new BarcodeInfo()
             {
-                Data = "77777",
+                Data = "52495",
                 Angle = 0,
                 Height = 100,
                 Width = 200,

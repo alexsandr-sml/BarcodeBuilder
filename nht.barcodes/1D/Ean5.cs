@@ -1,6 +1,7 @@
 ﻿using nht.barcodes.Common;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -48,6 +49,26 @@ namespace nht.barcodes._1D
                 Image = BarcodeDraw(_bitMask, barcodeWithCheckSumm, info),
                 Barcode = barcodeWithCheckSumm
             };
+        }
+
+        public override int GetChecksum(string data)
+        {
+            var allDigits = data.Select(x => int.Parse(x.ToString(CultureInfo.InvariantCulture)))
+                .ToArray();
+
+            int odd = 0;
+            int even = 0;
+            for (int i = 0; i < allDigits.Length; i++)
+            {
+                if (i % 2 == 0)
+                    odd += allDigits[i];
+                else
+                    even += allDigits[i];
+            }
+
+            int cs = 10 - ((even * 3 + odd * 9) % 10);
+
+            return cs == 10 ? 0 : cs % 10;
         }
 
         public override string BuldBitMask(string barcode, string patternCode)
