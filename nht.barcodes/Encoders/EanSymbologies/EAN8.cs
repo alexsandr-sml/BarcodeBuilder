@@ -1,10 +1,8 @@
 ﻿using nht.barcodes.Common;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
-namespace nht.barcodes._1D
+namespace nht.barcodes.Encoders.EanSymbologies
 {
     public class Ean8 : Ean
     {

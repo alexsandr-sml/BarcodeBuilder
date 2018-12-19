@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace nht.barcodes._1D
+namespace nht.barcodes.Encoders.EanSymbologies
 {
 	public class EanConstants
 	{

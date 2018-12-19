@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\nht.barcodes\nht.barcodes.csproj" />
-    <ProjectReference Include="..\TestBarcode\TestBarcode.csproj" />
   </ItemGroup>
 
 </Project>

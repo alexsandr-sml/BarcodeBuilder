@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace nht.barcodes._1D
+namespace nht.barcodes.Encoders.EanSymbologies
 {
     public class Ean
     {
